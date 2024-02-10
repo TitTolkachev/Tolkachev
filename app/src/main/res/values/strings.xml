@@ -1,3 +1,15 @@
 <resources>
     <string name="app_name">Tolkachev</string>
+
+    <!-- Movie List Screen -->
+    <string name="movie_list_popular_movies_title">Популярные</string>
+    <string name="movie_list_favourite_movies_title">Избранное</string>
+    <string name="movie_list_popular_movies_button_text">Популярные</string>
+    <string name="movie_list_favourite_movies_button_text">Избранное</string>
+
+    <string name="error_message_">Популярные</string>
+
+    <!-- Movie Search Screen -->
+    <string name="movie_search_placeholder">Поиск</string>
+    <string name="movie_search_not_found_text">Не найдено</string>
 </resources>

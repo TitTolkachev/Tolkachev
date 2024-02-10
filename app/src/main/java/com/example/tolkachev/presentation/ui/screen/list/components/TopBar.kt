@@ -1,11 +1,11 @@
-package com.example.tolkachev.presentation.ui.screen.favourite
+package com.example.tolkachev.presentation.ui.screen.list.components
 
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.tooling.preview.Preview
 import com.example.tolkachev.presentation.theme.AppTheme
 
 @Composable
-fun FavouriteMoviesScreen() {
+fun TopBar() {
 
 }
 
@@ -13,6 +13,6 @@ fun FavouriteMoviesScreen() {
 @Composable
 private fun Preview() {
     AppTheme {
-        FavouriteMoviesScreen()
+        TopBar()
     }
 }
