@@ -1,10 +1,10 @@
 package com.example.tolkachev.presentation.ui.screen.list.components
 
 import android.view.HapticFeedbackConstants
+import androidx.compose.animation.core.tween
 import androidx.compose.foundation.ExperimentalFoundationApi
 import androidx.compose.foundation.combinedClickable
 import androidx.compose.foundation.layout.Arrangement
-import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.IntrinsicSize
 import androidx.compose.foundation.layout.Row
@@ -14,6 +14,8 @@ import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.layout.width
+import androidx.compose.foundation.lazy.LazyColumn
+import androidx.compose.foundation.lazy.LazyItemScope
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material3.Icon
 import androidx.compose.material3.MaterialTheme
@@ -31,15 +33,15 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import coil.compose.AsyncImage
 import com.example.tolkachev.R
-import com.example.tolkachev.presentation.model.MovieShort
+import com.example.tolkachev.presentation.model.Movie
 import com.example.tolkachev.presentation.theme.AppTheme
 import com.example.tolkachev.presentation.theme.Black
 import com.example.tolkachev.presentation.ui.util.advancedShadow
 
 @OptIn(ExperimentalFoundationApi::class)
 @Composable
-fun MovieCard(
-    movie: MovieShort,
+fun LazyItemScope.MovieCard(
+    movie: Movie,
     onClick: () -> Unit = {},
     onLongClick: () -> Unit = {}
 ) {
@@ -53,6 +55,7 @@ fun MovieCard(
                 shadowBlurRadius = 10.dp,
                 offsetY = 5.dp
             )
+            .animateItemPlacement(tween(500))
             .clip(RoundedCornerShape(16.dp))
             .combinedClickable(
                 onClick = onClick,
@@ -111,10 +114,12 @@ fun MovieCard(
 @Composable
 private fun Preview1() {
     AppTheme {
-        Box(modifier = Modifier.padding(16.dp)) {
-            MovieCard(
-                MovieShort(0, "Movie 1", "Description", true)
-            )
+        LazyColumn(modifier = Modifier.padding(16.dp)) {
+            item {
+                MovieCard(
+                    Movie(0, "Movie 1", "Description", true)
+                )
+            }
         }
     }
 }
@@ -123,10 +128,12 @@ private fun Preview1() {
 @Composable
 private fun Preview2() {
     AppTheme {
-        Box(modifier = Modifier.padding(16.dp)) {
-            MovieCard(
-                MovieShort(0, "Movie MovieMovie Movie Movie Movie", "Description", true)
-            )
+        LazyColumn(modifier = Modifier.padding(16.dp)) {
+            item {
+                MovieCard(
+                    Movie(0, "Movie MovieMovie Movie Movie Movie", "Description", true)
+                )
+            }
         }
     }
 }
@@ -135,10 +142,12 @@ private fun Preview2() {
 @Composable
 private fun Preview3() {
     AppTheme {
-        Box(modifier = Modifier.padding(16.dp)) {
-            MovieCard(
-                MovieShort(0, "Movie MovieMovie Movie Movie Movie", "Description", false)
-            )
+        LazyColumn(modifier = Modifier.padding(16.dp)) {
+            item {
+                MovieCard(
+                    Movie(0, "Movie MovieMovie Movie Movie Movie", "Description", false)
+                )
+            }
         }
     }
 }

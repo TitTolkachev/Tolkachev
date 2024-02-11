@@ -2,6 +2,7 @@ plugins {
     id("com.android.application")
     id("org.jetbrains.kotlin.android")
     id("kotlinx-serialization")
+    id("com.google.devtools.ksp")
 }
 
 android {
@@ -31,6 +32,9 @@ android {
         }
     }
     compileOptions {
+        ksp {
+            arg("room.schemaLocation", "$projectDir/schemas")
+        }
         sourceCompatibility = JavaVersion.VERSION_1_8
         targetCompatibility = JavaVersion.VERSION_1_8
     }
@@ -80,4 +84,10 @@ dependencies {
 
     // Coil Compose
     implementation("io.coil-kt:coil-compose:2.5.0")
+
+    // Room
+    val roomVersion = "2.6.1"
+    implementation("androidx.room:room-runtime:$roomVersion")
+    implementation("androidx.room:room-ktx:$roomVersion")
+    ksp("androidx.room:room-compiler:$roomVersion")
 }

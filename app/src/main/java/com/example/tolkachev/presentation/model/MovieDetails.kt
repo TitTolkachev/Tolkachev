@@ -1,9 +1,10 @@
 package com.example.tolkachev.presentation.model
 
-data class MovieShort(
+data class MovieDetails(
     val id: Long,
     val name: String?,
     val description: String?,
-    val isFavourite: Boolean,
+    val genres: String,
+    val countries: String,
     val posterUrl: String? = null,
 )

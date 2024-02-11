@@ -4,7 +4,6 @@ data class Movie(
     val id: Long,
     val name: String?,
     val description: String?,
-    val genres: String,
-    val countries: String,
+    val isFavourite: Boolean,
     val posterUrl: String? = null,
 )

@@ -21,6 +21,7 @@ import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
+import androidx.compose.runtime.remember
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.layout.ContentScale
@@ -31,8 +32,9 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.zIndex
 import coil.compose.AsyncImage
-import com.example.tolkachev.presentation.model.Movie
+import com.example.tolkachev.presentation.model.MovieDetails
 import com.example.tolkachev.presentation.theme.AppTheme
+import com.example.tolkachev.presentation.ui.screen.list.components.RequestError
 import org.koin.androidx.compose.koinViewModel
 
 @Composable
@@ -42,14 +44,25 @@ fun MovieScreen(onBackClick: () -> Unit) {
 
     MovieContent(
         movie = state.movie,
+        isLoading = state.isLoading,
+        isError = state.isError,
+        onRefresh = remember { { viewModel.loadMovieDetails() } },
         onBackClick = onBackClick
     )
 }
 
 @Composable
-private fun MovieContent(movie: Movie?, onBackClick: () -> Unit = {}) {
+private fun MovieContent(
+    movie: MovieDetails?,
+    isLoading: Boolean = false,
+    isError: Boolean = false,
+    onRefresh: () -> Unit = {},
+    onBackClick: () -> Unit = {}
+) {
     BackButton(onClick = onBackClick)
-    if (movie == null) {
+    if (isError) {
+        RequestError(onClick = onRefresh)
+    } else if (isLoading || movie == null) {
         Box(Modifier.fillMaxSize()) {
             CircularProgressIndicator(Modifier.align(Alignment.Center))
         }
@@ -135,7 +148,7 @@ private fun BackButton(onClick: () -> Unit) {
 private fun Preview() {
     AppTheme {
         MovieContent(
-            Movie(
+            MovieDetails(
                 id = 0,
                 name = "Изгой-один: Звёздные войны",
                 description = "Сопротивление собирает отряд для выполнения особой миссии - надо выкрасть чертежи самого совершенного и мертоносного оружия Империи. Не всем суждено вернуться домой, но герои готовы к этому, ведь на кону судьба Галактики",
