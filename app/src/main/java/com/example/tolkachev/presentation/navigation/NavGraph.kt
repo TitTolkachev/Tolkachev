@@ -31,11 +31,9 @@ fun NavGraph(
             exitTransition = { ExitTransition.None },
             popEnterTransition = { EnterTransition.None },
         ) {
-            MovieListScreen(
-                onMovieClick = { movieId ->
-                    navController.navigate(Screen.Movie.route + "/$movieId")
-                }
-            )
+            MovieListScreen { movieId ->
+                navController.navigate(Screen.Movie.route + "/$movieId")
+            }
         }
         composable(
             route = Screen.Movie.route + "/{movieId}",
