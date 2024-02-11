@@ -9,8 +9,10 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.navigation.NavBackStackEntry
 import androidx.navigation.NavHostController
+import androidx.navigation.NavType
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
+import androidx.navigation.navArgument
 import com.example.tolkachev.presentation.ui.screen.list.MovieListScreen
 import com.example.tolkachev.presentation.ui.screen.movie.MovieScreen
 
@@ -30,15 +32,18 @@ fun NavGraph(
             popEnterTransition = { EnterTransition.None },
         ) {
             MovieListScreen(
-                onMovieClick = {
-                    navController.navigate(Screen.Movie.route)
+                onMovieClick = { movieId ->
+                    navController.navigate(Screen.Movie.route + "/$movieId")
                 }
             )
         }
         composable(
-            route = Screen.Movie.route,
+            route = Screen.Movie.route + "/{movieId}",
             enterTransition = { enterTransition() },
             popExitTransition = { exitTransition() },
+            arguments = listOf(navArgument("movieId") {
+                type = NavType.LongType
+            })
         ) {
             MovieScreen(
                 onBackClick = {

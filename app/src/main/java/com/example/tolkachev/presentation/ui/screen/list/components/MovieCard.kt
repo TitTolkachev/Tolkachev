@@ -2,7 +2,6 @@ package com.example.tolkachev.presentation.ui.screen.list.components
 
 import android.view.HapticFeedbackConstants
 import androidx.compose.foundation.ExperimentalFoundationApi
-import androidx.compose.foundation.Image
 import androidx.compose.foundation.combinedClickable
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
@@ -30,6 +29,7 @@ import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
+import coil.compose.AsyncImage
 import com.example.tolkachev.R
 import com.example.tolkachev.presentation.model.MovieShort
 import com.example.tolkachev.presentation.theme.AppTheme
@@ -64,8 +64,8 @@ fun MovieCard(
         shape = RoundedCornerShape(16.dp)
     ) {
         Row(Modifier.height(IntrinsicSize.Min)) {
-            Image(
-                painter = painterResource(id = R.drawable.ic_launcher_background),
+            AsyncImage(
+                model = movie.posterUrl,
                 modifier = Modifier
                     .padding(16.dp)
                     .size(40.dp, 63.dp)
@@ -80,7 +80,7 @@ fun MovieCard(
                 Row(verticalAlignment = Alignment.CenterVertically) {
                     Text(
                         modifier = Modifier.weight(1f),
-                        text = movie.name,
+                        text = movie.name ?: "Unknown",
                         style = MaterialTheme.typography.titleMedium,
                         overflow = TextOverflow.Ellipsis,
                         maxLines = 1
@@ -99,7 +99,7 @@ fun MovieCard(
                     Spacer(modifier = Modifier.width(16.dp))
                 }
                 Text(
-                    text = movie.description,
+                    text = movie.description ?: "",
                     style = MaterialTheme.typography.labelMedium,
                 )
             }
