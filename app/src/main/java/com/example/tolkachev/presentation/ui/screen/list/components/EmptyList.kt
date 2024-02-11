@@ -23,7 +23,7 @@ fun EmptyList() {
             modifier = Modifier.padding(horizontal = 16.dp),
             textAlign = TextAlign.Center,
             text = "Список пуст",
-            style = MaterialTheme.typography.labelSmall.copy(color = MaterialTheme.colorScheme.primary)
+            style = MaterialTheme.typography.titleMedium.copy(color = MaterialTheme.colorScheme.primary)
         )
     }
 }

@@ -106,7 +106,7 @@ private fun MovieListContent(
                 modifier = Modifier
                     .padding(paddingValues)
                     .padding(horizontal = 16.dp),
-                contentPadding = PaddingValues(top = 32.dp, bottom = 48.dp),
+                contentPadding = PaddingValues(top = 24.dp, bottom = 48.dp),
                 verticalArrangement = spacedBy(12.dp),
             ) {
                 items(items = movies, key = { it.id }) {
